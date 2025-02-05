@@ -9,8 +9,5 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: totem
-      url: https://github.com/GEIGEIGEIST/zmk-config-totem
-      revision: master
   self:
     path: config
