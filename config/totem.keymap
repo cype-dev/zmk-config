@@ -1,0 +1,189 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+// Global settings (milliseconds)
+#define TAPPING_TERM 1000
+#define PRIOR_IDLE   150
+#define QUICK_TAP    175
+
+// Layer definitions
+#define BASE  0
+#define MEDIA 1
+#define NAV   2
+#define MOUSE 3
+#define SYM   4
+#define NUM   5
+#define FUNC  6
+
+// hold-trigger-key-positions definitions
+#define HOLD_TRIGGER_KEYS_THUMBS 32 33 34 35 36 37
+
+// hold-trigger-key-positions definitions
+#define HOLD_TRIGGER_KEYS_THUMBS 32 33 34 35 36 37
+#define HOLD_TRIGGER_KEYS_LEFT 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 25
+#define HOLD_TRIGGER_KEYS_RIGHT 5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31
+
+// Keymap macros
+#define HML(TAP, MOD) &b_hml MOD TAP
+#define HMR(TAP, MOD) &b_hmr MOD TAP
+#define LTR(TAP, MOD) &b_ltr MOD TAP
+#define BT(MOD) &none
+
+/ {
+  behaviors {
+    b_hml: homerow_mod_left {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <TAPPING_TERM>;
+      require-prior-idle-ms = <PRIOR_IDLE>;
+      quick-tap-ms = <QUICK_TAP>;
+      flavor = "balanced";
+      bindings = <&kp>, <&kp>;
+      hold-trigger-key-positions = <HOLD_TRIGGER_KEYS_RIGHT HOLD_TRIGGER_KEYS_THUMBS>;
+      hold-trigger-on-release;
+    };
+    b_hmr: homerow_mod_right {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <TAPPING_TERM>;
+      require-prior-idle-ms = <PRIOR_IDLE>;
+      quick-tap-ms = <QUICK_TAP>;
+      flavor = "balanced";
+      bindings = <&kp>, <&kp>;
+      hold-trigger-key-positions = <HOLD_TRIGGER_KEYS_LEFT HOLD_TRIGGER_KEYS_THUMBS>;
+      hold-trigger-on-release;
+    };
+    b_ltr: layer_tap_repeat {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <TAPPING_TERM>;
+      flavor = "tap-preferred";
+      quick-tap-ms = <QUICK_TAP>;
+      bindings = <&mo>, <&kp>;	
+    };
+    // TODO: implement bluetooth select/disconnect/clear
+  };
+};
+
+/ {
+  keymap {
+    compatible = "zmk,keymap";
+    base_layer {
+//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     B     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     '     ┃
+//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+//             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
+// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+// ┃   LSHFT   ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃   RSHFT   ┃
+// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+//                                     ┃    ESC    ┃    SPC    ┃    TAB    ┃   ┃    RET    ┃   BSPC    ┃    DEL    ┃
+//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+      bindings = <
+                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
+                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
+        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
+                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+      >;
+    };
+
+    media_layer {
+//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+//             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    RW     ┃           ┃           ┃    FF     ┃
+//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+//             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃   PREV    ┃  VOL_DN   ┃  VOL_UP   ┃   NEXT    ┃
+// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+// ┃           ┃           ┃           ┃           ┃           ┃           ┃   ┃  OUT_TOG  ┃   BT_0    ┃   BT_1    ┃   BT_2    ┃   BT_3    ┃           ┃
+// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+//                                     ┃           ┃           ┃           ┃   ┃    STOP   ┃   PLAY    ┃   MUTE    ┃
+//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+      bindings = <
+              &none &none &none &none &none  &none        &kp C_RW   &none        &none        &kp C_FF
+              &none &none &none &none &none  &none        &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT 
+        &none &none &none &none &none &none  &out OUT_TOG BT(0)      BT(1)        BT(2)        BT(3)      &none
+                          &none &none &none  &kp C_STOP   &kp C_PP   &kp C_MUTE 
+      >;
+    };
+
+//////////
+// TODO //
+//////////
+    nav_layer {
+//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     B     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     '     ┃
+//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+//             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
+// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+// ┃   LSHFT   ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃   RSHFT   ┃
+// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+//                                     ┃    ESC    ┃    SPC    ┃    TAB    ┃   ┃    RET    ┃   BSPC    ┃    DEL    ┃
+//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+      bindings = <
+                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
+                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
+        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
+                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+      >;
+    };
+
+    mouse_layer {
+//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     B     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     '     ┃
+//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+//             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
+// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+// ┃   LSHFT   ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃   RSHFT   ┃
+// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+//                                     ┃    ESC    ┃    SPC    ┃    TAB    ┃   ┃    RET    ┃   BSPC    ┃    DEL    ┃
+//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+      bindings = <
+                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
+                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
+        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
+                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+      >;
+    };
+
+    sym_layer {
+// -----------------------------------------------------------------------------------------
+//        |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  |
+//        |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O  |
+// | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | SHFT |
+//                    | ESC | SPC | TAB |   | RET |BSPC | DEL |
+      bindings = <
+                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
+                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
+        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
+                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+      >;
+    };
+
+    num_layer {
+// -----------------------------------------------------------------------------------------
+//        |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  |
+//        |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O  |
+// | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | SHFT |
+//                    | ESC | SPC | TAB |   | RET |BSPC | DEL |
+      bindings = <
+                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
+                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
+        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
+                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+      >;
+    };
+
+    func_layer {
+// -----------------------------------------------------------------------------------------
+//        |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  |
+//        |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O  |
+// | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | SHFT |
+//                    | ESC | SPC | TAB |   | RET |BSPC | DEL |
+      bindings = <
+                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
+                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
+        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
+                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+      >;
+    };
+  };
+};
