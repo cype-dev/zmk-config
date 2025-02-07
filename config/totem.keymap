@@ -1,19 +1,28 @@
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
-
 //////////////
 // SETTINGS //
 //////////////
 
-// Global settings (milliseconds)
-#define TAPPING_TERM_HM 1000
-#define TAPPING_TERM    175
-#define PRIOR_IDLE      150
-#define QUICK_TAP       175
+// Global settings (time in milliseconds)
+#define TAPPING_TERM                  175  /* Time before keys register as held */
+#define QUICK_TAP                     175  /* Time during which keypress registers as repeat */
+
+#define TAPPING_TERM_HM               1000 /* Time before home row mods register as held */
+#define PRIOR_IDLE                    150  /* Time without keypress for home row mods to register */
+
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500 /* Amount of mouse movement */
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20   /* Amount of mouse scroll */
 
 //--------------------------------------------------------------//
+
+//////////////
+// Includes //
+//////////////
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 
 ///////////////////
 // HELPER MACROS //
@@ -159,45 +168,45 @@
       >;
     };
 
-//////////
-// TODO //
-//////////
     nav_layer {
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     B     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     '     ┃
+//             ┃           ┃           ┃           ┃           ┃           ┃   ┃   REDO    ┃   PASTE   ┃   COPY    ┃    CUT    ┃   UNDO    ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
+//             ┃   LGUI    ┃   LALT    ┃   LCTRL   ┃   LSHFT   ┃           ┃   ┃ CAPS_WORD ┃     ←     ┃     ↓     ┃     ↑     ┃     →     ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃   LSHFT   ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃   RSHFT   ┃
+// ┃           ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃   HOME    ┃   PG_DN   ┃   PG_UP   ┃    END    ┃           ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃    ESC    ┃    SPC    ┃    TAB    ┃   ┃    RET    ┃   BSPC    ┃    DEL    ┃
+//                                     ┃           ┃           ┃           ┃   ┃    RET    ┃   BSPC    ┃    DEL    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
       bindings = <
-                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
-                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
-        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
-                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+              &none    &none    &none     &none     &none  &kp K_REDO &kp LS(INS) &kp LC(INS) &kp LS(DEL) &kp K_UNDO
+              &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none  &caps_word &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT
+        &none &none    &none    &none     &none     &none  &none      &kp HOME    &kp PG_DN   &kp PG_UP   &kp END    &none
+                                &none     &none     &none  &kp RET    &kp BSPC    &kp DEL
       >;
     };
 
     mouse_layer {
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃     Q     ┃     W     ┃     F     ┃     P     ┃     B     ┃   ┃     J     ┃     L     ┃     U     ┃     Y     ┃     '     ┃
+//             ┃           ┃           ┃           ┃           ┃           ┃   ┃   REDO    ┃   PASTE   ┃   COPY    ┃    CUT    ┃   UNDO    ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃     A     ┃     R     ┃     S     ┃     T     ┃     G     ┃   ┃     M     ┃     N     ┃     E     ┃     I     ┃     O     ┃
+//             ┃   LGUI    ┃   LALT    ┃   LCTRL   ┃   LSHFT   ┃           ┃   ┃           ┃MOUSE_LEFT ┃ MOUSE_DN  ┃ MOUSE_UP  ┃MOUSE_RIGHT┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
-// ┃   LSHFT   ┃     Z     ┃     X     ┃     C     ┃     D     ┃     V     ┃   ┃     K     ┃     H     ┃     ,     ┃     .     ┃     /     ┃   RSHFT   ┃
+// ┃           ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃ SCRL_LEFT ┃  SCRL_DN  ┃  SCRL_UP  ┃SCRL_RIGHT ┃           ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃    ESC    ┃    SPC    ┃    TAB    ┃   ┃    RET    ┃   BSPC    ┃    DEL    ┃
+//                                     ┃           ┃           ┃           ┃   ┃   RCLK    ┃   LCLK    ┃   MCLK    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
       bindings = <
-                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
-                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
-        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
-                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+              &none    &none    &none     &none     &none  &kp K_REDO &kp LS(INS)    &kp LC(INS)    &kp LS(DEL)  &kp K_UNDO
+              &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none  &none      &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT
+        &none &none    &none    &none     &none     &none  &none      &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_UP &msc SCRL_RIGHT &kp RSHFT
+                                &none     &none     &none  &mkp RCLK  &mkp LCLK      &mkp MCLK
       >;
     };
 
+//////////
+// TODO //
+//////////
     sym_layer {
 // -----------------------------------------------------------------------------------------
 //        |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  |
