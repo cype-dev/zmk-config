@@ -36,20 +36,20 @@
 #define HML(TAP, MOD) &b_hml MOD TAP
 #define HMR(TAP, MOD) &b_hmr MOD TAP
 #define LTR(TAP, LAYER) &b_ltr LAYER TAP
-#define BT(CHANNEL) &b_bc_ ## CHANNEL
+#define BT(CHANNEL) &b_bc_##CHANNEL
 
 // Bluetooth connect/disconnect/clear helper macro
 #define B_BT(CHANNEL) \
-  b_bd_ ## CHANNEL: bluetooth_disconnect_ ## CHANNEL { \
+  b_bd_##CHANNEL: bluetooth_disconnect_##CHANNEL { \
     compatible = "zmk,behavior-mod-morph"; \
     #binding-cells = <0>; \
     bindings = <&bt BT_DISC CHANNEL>, <&m_bcl CHANNEL>; \
     mods = <(MOD_LCTL|MOD_RCTL)>; \
   }; \
-  b_bc_ ## CHANNEL: bluetooth_connect_ ## CHANNEL { \
+  b_bc_##CHANNEL: bluetooth_connect_ ## CHANNEL { \
     compatible = "zmk,behavior-mod-morph"; \
     #binding-cells = <0>; \
-    bindings = <&bt BT_SEL CHANNEL>, <&b_bd_CHANNEL>; \
+    bindings = <&bt BT_SEL CHANNEL>, <&b_bd_##CHANNEL>; \
     mods = <(MOD_LSFT|MOD_RSFT)>; \
   };
 
