@@ -144,17 +144,17 @@
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃    RW     ┃           ┃           ┃    FF     ┃
 //             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-//             ┃           ┃           ┃           ┃           ┃           ┃   ┃           ┃   PREV    ┃  VOL_DN   ┃  VOL_UP   ┃   NEXT    ┃
+//             ┃   LGUI    ┃   LALT    ┃   LCTRL   ┃   LSHFT   ┃           ┃   ┃           ┃   PREV    ┃  VOL_DN   ┃  VOL_UP   ┃   NEXT    ┃
 // ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
 // ┃           ┃           ┃           ┃           ┃           ┃           ┃   ┃  OUT_TOG  ┃   BT_0    ┃   BT_1    ┃   BT_2    ┃   BT_3    ┃           ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃           ┃           ┃           ┃   ┃    STOP   ┃   PLAY    ┃   MUTE    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
       bindings = <
-              &none &none &none &none &none  &none        &kp C_RW   &none        &none        &kp C_FF
-              &none &none &none &none &none  &none        &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT 
-        &none &none &none &none &none &none  &out OUT_TOG BT(0)      BT(1)        BT(2)        BT(3)      &none
-                          &none &none &none  &kp C_STOP   &kp C_PP   &kp C_MUTE 
+              &none    &none    &none     &none     &none  &none        &kp C_RW   &none        &none        &kp C_FF
+              &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none  &none        &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT 
+        &none &none    &none    &none     &none     &none  &out OUT_TOG BT(0)      BT(1)        BT(2)        BT(3)      &none
+                                &none     &none     &none  &kp C_STOP   &kp C_PP   &kp C_MUTE 
       >;
     };
 
