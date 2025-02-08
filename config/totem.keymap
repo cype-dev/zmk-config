@@ -66,7 +66,7 @@
 
 // Custom shift-ed key helper macro
 #define B_CS(TAP, SHIFT) \
-  &b_##TAP##SHIFT: TAP##_##SHIFT { \
+  &b_##TAP##SHIFT##: TAP##_##SHIFT { \
     compatible = "zmk,behavior-mod-morph"; \                
     #binding-cells = <0>; \
     bindings = <&kp TAP>, <&kp SHIFT>; \
