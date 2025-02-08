@@ -47,6 +47,7 @@
 #define HMR(TAP, MOD) &b_hmr MOD TAP
 #define LTR(TAP, LAYER) &b_ltr LAYER TAP
 #define BT(CHANNEL) &b_bc_##CHANNEL
+#define CS(TAP, SHIFT) &b_##TAP##SHIFT
 
 // Bluetooth connect/disconnect/clear helper macro
 #define B_BT(CHANNEL) \
@@ -60,6 +61,15 @@
     compatible = "zmk,behavior-mod-morph"; \
     #binding-cells = <0>; \
     bindings = <&bt BT_SEL CHANNEL>, <&b_bd_##CHANNEL>; \
+    mods = <(MOD_LSFT|MOD_RSFT)>; \
+  };
+
+// Custom shift-ed key helper macro
+#define B_CS(TAP, SHIFT) \
+  &b_##TAP##SHIFT: TAP##_##SHIFT { \
+    compatible = "zmk,behavior-mod-morph"; \                
+    #binding-cells = <0>; \
+    bindings = <&kp TAP>, <&kp SHIFT>; \
     mods = <(MOD_LSFT|MOD_RSFT)>; \
   };
 
@@ -122,6 +132,8 @@
     B_BT(1)
     B_BT(2)
     B_BT(3)
+    B_CS(COMMA, EXCL)
+    B_CS(DOT, QMARK)
   };
 };
 
@@ -143,9 +155,9 @@
 //                                     ┃    ESC    ┃    SPC    ┃    TAB    ┃   ┃    RET    ┃   BSPC    ┃    DEL    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
       bindings = <
-                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
-                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
-        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
+                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U           &kp Y          &kp SQT
+                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)   HMR(I, RALT)   HMR(O, RGUI)
+        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          CS(COMMA, EXCL) CS(DOT, QMARK) &kp SEMI     &kp RSHFT
                                             LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
       >;
     };
