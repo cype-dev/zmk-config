@@ -234,16 +234,21 @@
     };
 
     num_layer {
-// -----------------------------------------------------------------------------------------
-//        |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  |
-//        |  A  |  R  |  S  |  T  |  G  |   |  M  |  N  |  E  |  I  |  O  |
-// | SHFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | SHFT |
-//                    | ESC | SPC | TAB |   | RET |BSPC | DEL |
+//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
+//             ┃     /     ┃     7     ┃     8     ┃     9     ┃     -     ┃   ┃   REDO    ┃   PASTE   ┃   COPY    ┃    CUT    ┃   UNDO    ┃
+//             ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
+//             ┃     *     ┃     4     ┃     5     ┃     6     ┃     +     ┃   ┃           ┃   RSHFT   ┃   RCTRL   ┃   RALT    ┃   RGUI    ┃
+// ┏━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┓
+// ┃   CALC    ┃           ┃     1     ┃     2     ┃     3     ┃     .     ┃   ┃           ┃ SCRL_LEFT ┃  SCRL_DN  ┃  SCRL_UP  ┃SCRL_RIGHT ┃           ┃
+// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+//                                     ┃           ┃     0     ┃    RET    ┃   ┃   RCLK    ┃   LCLK    ┃   MCLK    ┃
+//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
+
       bindings = <
-                  &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
-                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
-        &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
-                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+                      &kp KP_SLASH    &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS  &none &none     &none     &none    &none
+                      &kp KP_ASTERISK &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_PLUS   &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI
+        &kp C_AL_CALC &none           &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_DOT    &none &none     &none     &none    &none    &none
+                                                &none     &kp N0    &kp KP_ENTER  &none &none     &none 
       >;
     };
 
