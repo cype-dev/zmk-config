@@ -50,7 +50,7 @@
 #define BT(CHANNEL) &b_bc_##CHANNEL     // Bluetooth toggle
 #define CS(TAP, SHIFT) &b_##TAP##SHIFT  // Custom shift
 #define MM(DIR) &mmv MOVE_##DIR         // Mouse move
-#define MS(DIR) &mms SCRL_##DIR         // Mouse scroll
+#define MS(DIR) &msc SCRL_##DIR         // Mouse scroll
 
 // Bluetooth connect/disconnect/clear helper macro
 #define B_BT(CHANNEL) \
