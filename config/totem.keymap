@@ -70,7 +70,7 @@
 // Custom shift-ed key helper macro
 #define B_CS(TAP, SHIFT) \
   b_##TAP##SHIFT##: TAP##_##SHIFT { \
-    compatible = "zmk,behavior-mod-morph"; \                
+    compatible = "zmk,behavior-mod-morph"; \
     #binding-cells = <0>; \
     bindings = <&kp TAP>, <&kp SHIFT>; \
     mods = <(MOD_LSFT|MOD_RSFT)>; \
@@ -266,9 +266,9 @@
 //                    | ESC | SPC | TAB |   | RET |BSPC | DEL |
       bindings = <
                   &kp Q        &kp W        &kp F           &kp P           &kp B            &kp J         &kp L          &kp U          &kp Y        &kp SQT
-                  HML(A, LGUI) HML(R, LALT) HML(S, LCTRL)   HML(T, LSHFT)   &kp G            &kp M         HMR(N, RSHFT)  HMR(E, RCTRL)  HMR(I, RALT) HMR(O, RGUI)
+                  HL(A,LGUI)  HL(R,LALT)  HL(S,LCTRL)   HL(T,LSHFT)   &kp G            &kp M         HR(N,RSHFT)  HR(E,RCTRL)  HR(I,RALT) HR(O,RGUI)
         &kp LSHFT &kp Z        &kp X        &kp C           &kp D           &kp V            &kp K         &kp H          &kp COMMA      &kp DOT      &kp SLASH    &kp RSHFT
-                                            LTR(ESC, MEDIA) LTR(SPACE, NAV) LTR(TAB, MOUSE)  LTR(RET, SYM) LTR(BSPC, NUM) LTR(DEL, FUNC)
+                                            LR(ESC,MEDI) LR(SPACE,NAV) LR(TAB,MOUS)  LR(RET,SYM) LR(BSPC,NUM) LR(DEL,FUNC)
       >;
     };
   };
