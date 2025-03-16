@@ -19,4 +19,4 @@
 #
 ---
 board: [ "seeeduino_xiao_ble" ]
-shield: [ "totem_left", "totem_right", "totem_dongle" ]
+shield: [ "totem_left", "totem_right", "totem_dongle", "settings_reset" ]
