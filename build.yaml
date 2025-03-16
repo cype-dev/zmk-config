@@ -18,5 +18,16 @@
 #     artifact-name: corne_left_with_studio
 #
 ---
-board: [ "seeeduino_xiao_ble" ]
-shield: [ "totem_left", "totem_right", "totem_dongle", "settings_reset" ]
+#board: [ "seeeduino_xiao_ble" ]
+#shield: [ "totem_left", "totem_right", "settings_reset" ]
+include:
+  - board: seeeduino_xiao_ble
+    shield: totem_left
+  - board: seeeduino_xiao_ble
+    shield: totem_right
+  - board: seeeduino_xiao_ble
+    shield: settings_reset
+  - board: nrf52840dk_nrf52840
+    shield: totem_dongle
+  - board: nrf52840dk_nrf52840
+    shield: settings_reset
