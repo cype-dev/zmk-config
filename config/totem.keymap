@@ -161,7 +161,7 @@
                 &kp Q       &kp W       &kp F       &kp P       &kp B           &kp J       &kp L        &kp U          &kp Y         &kp SQT
                 HL(A,LGUI)  HL(R,LALT)  HL(S,LCTRL) HL(T,LSHFT) &kp G           &kp M       HR(N,RSHFT)  HR(E,RCTRL)    HR(I,RALT)    HR(O,RGUI)
     &kp LSHFT   &kp Z       &kp X       &kp C       &kp D       &kp V           &kp K       &kp H        CS(COMMA,EXCL) CS(DOT,QMARK) &kp SEMI   &kp RSHFT
-                                     LR(ESC,MEDI) LR(SPACE,NAV) LR(TAB,MOUS)    LR(RET,SYM) LR(BSPC,NUM) LR(DEL,FUNC)
+                                     LR(ESC,MEDI) LR(SPACE,NAV) LR(TAB,MOUS)    LR(RET,NUM) LR(BSPC,SYM) LR(DEL,FUNC)
       >;
     };
 
