@@ -23,12 +23,15 @@
 include:
   - board: seeeduino_xiao_ble
     shield: totem_left
+    cmake-args: -DCONFIG_ZMK_BLE_CLEAR_BONDS_ON_START=y
   - board: seeeduino_xiao_ble
     shield: totem_right
+    cmake-args: -DCONFIG_ZMK_BLE_CLEAR_BONDS_ON_START=y
   - board: seeeduino_xiao_ble
     shield: settings_reset
   - board: nrf52840_mdk_usb_dongle
     shield: totem_dongle
+    cmake-args: -DCONFIG_ZMK_BLE_CLEAR_BONDS_ON_START=y
     snippet: zmk-usb-logging
   - board: nrf52840_mdk_usb_dongle
     shield: settings_reset
