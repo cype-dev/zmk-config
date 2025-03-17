@@ -230,7 +230,7 @@
 //                                     ┃           ┃           ┃           ┃   ┃           ┃           ┃           ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
       bindings = <
-                &kp CARET   &kp LT      &kp GT      &kp BSLH    &none           &kp AMPS    &kp SEMI    &kp LBKT    &kp RBKT    &kp SQT
+                &kp CARET   &kp LT      &kp GT      &kp BSLH    &none           &kp AMPS    &kp SEMI    &kp LBKT    &kp RBKT    &kp PRCNT
                 &kp MINUS   &kp TILDE   &kp DOT     &kp FSLH    &kp UNDER       &kp PIPE    &kp COLON   &kp LPAR    &kp RPAR    &kp AT
     &none       &kp EXCL    &kp ASTRK   &kp PLUS    &kp EQUAL   &kp HASH        &none       &kp DLLR    &kp LBRC    &kp RBRC    &kp QMARK   &none
                                         &none       &none       &none           &none       &none       &none
