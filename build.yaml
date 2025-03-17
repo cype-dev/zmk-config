@@ -30,7 +30,5 @@ include:
   - board: nrf52840_mdk_usb_dongle
     shield: totem_dongle
     snippet: zmk-usb-logging
-    cmake-args: -DCONFIG_BUILD_OUTPUT_UF2=y
   - board: nrf52840_mdk_usb_dongle
     shield: settings_reset
-    cmake-args: -DCONFIG_BUILD_OUTPUT_UF2=y
