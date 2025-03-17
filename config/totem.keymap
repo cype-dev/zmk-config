@@ -4,7 +4,7 @@
 
 // Global settings (time in milliseconds)
 #define TAPPING_TERM                  175  /* Time before keys register as held */
-#define QUICK_TAP                     175  /* Time during which keypress registers as repeat */
+#define QUICK_TAP                     200  /* Time during which keypress registers as repeat */
 
 #define TAPPING_TERM_HM               1000 /* Time before home row mods register as held */
 #define PRIOR_IDLE                    150  /* Time without keypress for home row mods to register */
