@@ -18,8 +18,7 @@
 #     artifact-name: corne_left_with_studio
 #
 ---
-#board: [ "seeeduino_xiao_ble" ]
-#shield: [ "totem_left", "totem_right", "settings_reset" ]
+# Dongle setup
 include:
   - board: seeeduino_xiao_ble
     shield: totem_left
@@ -34,3 +33,12 @@ include:
   - board: nrf52840_mdk_usb_dongle
     shield: settings_reset
     cmake-args: -DCONFIG_BUILD_OUTPUT_UF2=y
+
+# Dongle-less setup
+#include:
+#  - board: seeeduino_xiao_ble
+#    shield: totem_lcentral
+#  - board: seeeduino_xiao_ble
+#    shield: totem_right
+#  - board: seeeduino_xiao_ble
+#    shield: settings_reset

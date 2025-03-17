@@ -20,7 +20,23 @@ config ZMK_USB
 
 endif
 
-if SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT || SHIELD_TOTEM_DONGLE
+if SHIELD_TOTEM_LCENTRAL
+
+config ZMK_KEYBOARD_NAME
+    default "TOTEM"
+    
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+config BT_MAX_CONN
+    default 5
+
+config BT_MAX_PAIRED
+    default 5
+
+endif
+
+if SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT || SHIELD_TOTEM_DONGLE || SHIELD_TOTEM_LCENTRAL
 
 config ZMK_SPLIT
     default y
@@ -30,12 +46,5 @@ config ZMK_BLE
 
 config ZMK_BLE_EXPERIMENTAL_FEATURES
     default y
-
-endif
-
-if SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT
-
-config ZMK_SPLIT_ROLE_CENTRAL
-    default n
 
 endif
