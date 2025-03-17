@@ -28,6 +28,9 @@ config ZMK_SPLIT
 config ZMK_BLE
     default y
 
+config ZMK_BLE_EXPERIMENTAL_FEATURES
+    default y
+
 endif
 
 if SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT
